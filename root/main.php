@@ -27,7 +27,7 @@
 
 <html style="height: 100%" lang="es"><head>
 	<meta charset="utf-8">
-	<title>Mis Pastas - Panel Usuario</title>
+	<title>Mis Pastas - Panel Administrador</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../icons/emblems/emblem-new.png" />
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
@@ -75,6 +75,16 @@
 
   </script>
   <!-- END Data Table Script -->
+  
+    <style>
+.avatar {
+  vertical-align: middle;
+  horizontal-align: right;
+  width: 60px;
+  height: 60px;
+  border-radius: 60%;
+}
+</style>
 	
 </head>
 <body  background="../img/background.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100%">
@@ -110,9 +120,11 @@
           <form action="main.php" method="POST">
           <div class="btn-group-vertical" >
           <form action="main.php" method="POST">
-	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</button>
-	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</button>
-	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Catálogo</button>
+	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</button>
+	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</button>
+	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos</button>
+	    <button type="submit" class="btn btn-default" name="D"><span class="pull-center "><img src="../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Cargar Localidades</button>
+	    <button type="submit" class="btn btn-default" name="E"><span class="pull-center "><img src="../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Total Vendido</button>
 	  </div> 
 	  </form>
        
@@ -122,22 +134,27 @@
      <div class="col-xs-10">
       <div class="row">
 	<nav class="col-xs-12" id="myScrollspy">
-	  <div class="panel panel-warning" >
-	    
-	
+	  
+	  
 	<?php
 	
 	if($conn){
 	
 	  if(isset($_POST['A'])){
 	  
-		  loadUser($nombre,$conn);
+		  loadUsers($conn);
 	  	  
 	  }
 	  if(isset($_POST['B'])){
 	  
-		  loadUserAsk($nombre,$conn);
+		  loadAsk($conn);
 	  
+	  }
+	  if(isset($_POST['C'])){
+		  addProductos($conn);
+	  }
+	  if(isset($_POST['D'])){
+		  addLocalidad($conn);
 	  }
 	  
 	
@@ -159,20 +176,48 @@
 	
 	
 	</nav>
-      </div>
-     </div>
+       </div>
      </div>
     </div>
   </div>
 <!-- end dashboard -->
 
 </div>
-
-
-
+</div>
 </div>
 
-</div>
+<!-- Modal -->
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Eliminar Registro</h4>
+					</div>
+
+					<div class="modal-body">
+						¿Desea eliminar este registro?
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
+						<a class="btn btn-danger btn-ok"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('#confirm-delete').on('show.bs.modal', function(e) {
+				$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+			});
+		</script>
+		
+		<!-- END Modal -->
+		
 
 
 </body>
