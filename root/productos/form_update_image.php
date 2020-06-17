@@ -62,7 +62,7 @@
 	echo '<br>';
 	echo "O no tiene permisos o no ha iniciado sesion...";
 	echo "</div>";
-	echo '<a href="../../index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
 	
@@ -102,7 +102,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 			  echo '<h1 class="panel-title text-left" contenteditable="true"><img src="../../img/success-img.png" alt="Avatar" class="avatar" ><strong> Base de Datos Actualizada. El Archivo '.$fileName. ' se ha subido correctamente..</strong>';
                           echo "</div><hr>";
                           echo '<div class="alert alert-success" role="alert">';
-                          echo "<a href='../main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
+                          echo "<a href='../main/main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
                           echo "</div><hr>";
                           
             
@@ -114,7 +114,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 			  echo '<h1 class="panel-title text-left" contenteditable="true"><img src="../../img/success-img.png" alt="Avatar" class="avatar" ><strong> El Archivo '.$fileName. ' se ha subido correctamente.</strong>';
                           echo "</div><hr>";
                           echo '<div class="alert alert-success" role="alert">';
-                          echo "<a href='../main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
+                          echo "<a href='../main/main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
                           echo "</div><hr>"; 
                 
             } 
@@ -123,7 +123,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 			  echo '<h1 class="panel-title text-left" contenteditable="true"><img src="../../img/think-img.png" alt="Avatar" class="avatar" ><strong> Ups. Hubo un error subiendo el Archivo.</strong>';
                           echo "</div><hr>";
                           echo '<div class="alert alert-success" role="alert">';
-                          echo "<a href='../main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
+                          echo "<a href='../main/main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
                           echo "</div><hr>";
         }
     }else{
@@ -131,7 +131,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 			  echo '<h1 class="panel-title text-left" contenteditable="true"><img src="../../img/aircraft-crash64-img.png" alt="Avatar" class="avatar" ><strong> Ups, solo archivos con extensión: MP3, OGG, FLAC son soportados.</strong>';
 			  echo "</div><hr>";
                           echo '<div class="alert alert-success" role="alert">';
-                          echo "<a href='../main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
+                          echo "<a href='../main/main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
                           echo "</div><hr>";
     }
 }else{
@@ -139,7 +139,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
                           echo '<h1 class="panel-title text-left" contenteditable="true"><img src="../../img/refresh-img.png" alt="Avatar" class="avatar" ><strong> Por favor, seleccione al archivo a subir.</strong>';
                           echo "</div><hr>";
                           echo '<div class="alert alert-success" role="alert">';
-                          echo "<a href='../main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
+                          echo "<a href='../main/main.php'><button class='btn btn-warning navbar-btn'><span class='glyphicon glyphicon-chevron-left'></span> Volver</button></a>";
                           echo "</div><hr>";
 }
 

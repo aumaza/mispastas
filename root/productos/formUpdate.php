@@ -24,11 +24,13 @@
 	}
 
 	$background = 'background="../../img/background.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100%"';
-?>
+	$id = $_GET['id'];
+	
+	?>
 
 <html><head>
 	<meta charset="utf-8">
-	<title>Localidades - Registro Guardado</title>
+	<title>Productos - Registro Actualizado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../icons/actions/list-add.png" />
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
@@ -77,18 +79,13 @@
 <?php
 
       if($conn){
+		$id = mysqli_real_escape_string($conn,$_POST["id"]);
+		$descripcion = mysqli_real_escape_string($conn,$_POST["descripcion"]);
+		$descripcion = strtoupper($descripcion);
+		$precio = mysqli_real_escape_string($conn,$_POST["precio"]);
+				
 		
-		$cod_loc = mysqli_real_escape_string($conn,$_POST["cod_loc"]);
-		$cod_loc = strtoupper($cod_loc);
-		$localidad = mysqli_real_escape_string($conn,$_POST["localidad"]);
-		$localidad = strtoupper($localidad);
-		
-		
-		
-		 $sqlInsert = "INSERT INTO localidades ".
-		  "(cod_loc,descripcion)".
-		  "VALUES ".
-		  "('$cod_loc','$localidad')";
+		 $sqlInsert = "UPDATE productos set descripcion = '$descripcion', precio = '$precio' where id = '$id'";
 		  mysqli_select_db('mis_pastas');
 		  $q = mysqli_query($conn,$sqlInsert);
 		  
@@ -101,7 +98,7 @@
 			}else{
    
 			      echo '<div class="alert alert-success" role="alert">';
-			      echo "Registro Guardado Exitosamente!!";
+			      echo "Registro Actualizado Exitosamente!!";
 			      echo "</div>";
 			      echo '<hr> <a href="../main/main.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 			      } 

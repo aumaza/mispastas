@@ -19,7 +19,7 @@
 	echo '<br>';
 	echo "O no tiene permisos o no ha iniciado sesion...";
 	echo "</div>";
-	echo '<a href="../../index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
 
@@ -103,7 +103,7 @@
 			      echo '<div class="alert alert-success" role="alert">';
 			      echo "Registro Guardado Exitosamente!!";
 			      echo "</div>";
-			      echo '<hr> <a href="../main.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+			      echo '<hr> <a href="../main/main.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 			      } 
 		    
 		

@@ -137,7 +137,7 @@ if($conn)
 	//mostramos fila x fila
 
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
@@ -196,7 +196,7 @@ if($conn)
 	//mostramos fila x fila
 	$count = 0;
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
@@ -255,7 +255,7 @@ if($conn)
 	//mostramos fila x fila
 	$count = 0;
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
@@ -318,7 +318,7 @@ if($conn)
 	//mostramos fila x fila
 	$count = 0;
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
@@ -382,7 +382,7 @@ if($conn)
 	//mostramos fila x fila
 	$count = 0;
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Localidades';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Localidades';
 	echo '</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
@@ -401,15 +401,15 @@ if($conn)
 			 echo "<td align=center>".$fila['cod_loc']."</td>";
 			 echo "<td align=center>".$fila['descripcion']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="localidades/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="#" data-href="localidades/eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
+			 echo '<a href="../localidades/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
+			 echo '<a href="#" data-href="../localidades/eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
 			 echo "</td>";
 			 $count++;
 		}
 
 		echo "</table>";
 		echo "<br>";
-		echo '<a href="localidades/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Localidad</button></a><br><hr>';
+		echo '<a href="../localidades/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Localidad</button></a><br><hr>';
 		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
 		echo '</div>';
 		}else{
@@ -437,7 +437,7 @@ if($conn)
 	//mostramos fila x fila
 	$count = 0;
 	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
@@ -459,16 +459,72 @@ if($conn)
 			 echo "<td align=center>".$fila['descripcion']."</td>";
 			 echo "<td align=center>".$fila['precio']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="productos/addImage.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar Imagen</a>';
-			 echo '<a href="productos/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="#" data-href="productos/eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
+			 echo '<a href="../productos/addImage.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar Imagen</a>';
+			 echo '<a href="../productos/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
+			 echo '<a href="#" data-href="../productos/eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
 			 echo "</td>";
 			 $count++;
 		}
 
 		echo "</table>";
 		echo "<br>";
-		echo '<a href="productos/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Producto</button></a><br><hr>';
+		echo '<a href="../productos/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Producto</button></a><br><hr>';
+		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
+		echo '</div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+
+}
+
+
+/*
+* Funcion para lista productos.-
+*/
+
+function productos($conn){
+
+
+if($conn)
+{
+	$sql = "SELECT * FROM productos";
+    	mysqli_select_db('mis_pastas');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="panel panel-warning" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
+	echo '</div><br>';
+
+            echo "<table class='display compact' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Imagen</th>
+		    <th class='text-nowrap text-center'>Descripción</th>
+                    <th class='text-nowrap text-center'>Precio</th>
+                    
+                    <th>&nbsp;</th>
+                    </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center><img src='$fila[imagen]' alt='Avatar' class='avatar' ></td>"; 
+			 echo "<td align=center>".$fila['descripcion']."</td>";
+			 echo "<td align=center>".$fila['precio']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo '<a href="productos/nuevoPedido.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Hacer Pedido</a>';
+			 echo "</td>";
+			 $count++;
+		}
+
+		echo "</table>";
+		echo "<br>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
 		echo '</div>';
 		}else{

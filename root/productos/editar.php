@@ -22,12 +22,18 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
+	
+	$id = $_GET['id'];
+	$sql = "SELECT * FROM productos WHERE id = '$id'";
+	mysqli_select_db('mis_pastas');
+	$resultado = mysqli_query($conn,$sql);
+	$fila = mysqli_fetch_assoc($resultado);
 
 ?>
 
 <html><head>
 	<meta charset="utf-8">
-	<title>Localidades - Nuevo Registro</title>
+	<title>Productos - Nuevo Registro</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../icons/actions/list-add.png" />
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
@@ -97,27 +103,28 @@
 
 <div class="panel panel-info" >
   <div class="panel-heading">
-    <h2 class="panel-title text-center text-default "><span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Nuevo Registro</h2>
+    <h2 class="panel-title text-center text-default "><span class="pull-center "><img src="../../icons/actions/document-edit.png"  class="img-reponsive img-rounded"> Nuevo Registro</h2>
   </div>
     <div class="panel-body">
     
     
-     <form action="formNuevoRegistro.php" method="post">
+     <form action="formUpdate.php" method="post">
+     <input type="hidden" id="id" name="id" value="<?php echo $fila['id']; ?>" />
          
   <div class="input-group">
     <span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
-    <input id="text" type="text" class="form-control" name="cod_loc" placeholder="Código Localidad" required>
+    <input id="text" type="text" class="form-control" name="descripcion" value="<?php echo $fila['descripcion']; ?>" required>
   </div>
  
    <div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
-    <input  type="text" class="form-control" name="localidad" placeholder="Localidad" required>
+    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+    <input  type="text" class="form-control" name="precio" value="<?php echo $fila['precio']; ?>" required>
   </div><br><hr>
   
   
   <div class="form-group">
    <div class="col-sm-offset-2 col-sm-12" align="left">
-   <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>  Agregar</button>
+   <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span>  Editar</button>
    <a href="../main/main.php"><input type="button" value="Volver al Menú" class="btn btn-primary"></a>
    </div>
   </div>

@@ -24,13 +24,15 @@
 	}
 
 	$background = 'background="../../img/background.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100%"';
-?>
+	$id = $_GET['id'];
+	
+	?>
 
 <html><head>
 	<meta charset="utf-8">
-	<title>Localidades - Registro Guardado</title>
+	<title>Productos - Eliminar Registro</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="../../icons/actions/list-add.png" />
+	<link rel="icon" type="image/png" href="../../icons/actions/edit-delete.png" />
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.css" >
 	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.min.css" >
@@ -77,18 +79,9 @@
 <?php
 
       if($conn){
+				
 		
-		$cod_loc = mysqli_real_escape_string($conn,$_POST["cod_loc"]);
-		$cod_loc = strtoupper($cod_loc);
-		$localidad = mysqli_real_escape_string($conn,$_POST["localidad"]);
-		$localidad = strtoupper($localidad);
-		
-		
-		
-		 $sqlInsert = "INSERT INTO localidades ".
-		  "(cod_loc,descripcion)".
-		  "VALUES ".
-		  "('$cod_loc','$localidad')";
+		 $sqlInsert = "delete from productos where id = '$id'";
 		  mysqli_select_db('mis_pastas');
 		  $q = mysqli_query($conn,$sqlInsert);
 		  
@@ -97,11 +90,11 @@
 			echo '<div class="alert alert-danger" role="alert">';
 			echo 'Could not enter data: ' . mysqli_error();
 			echo "</div>";
-			echo '<hr> <a href="nuevoRegistro.php"><input type="button" value="Volver" class="btn btn-primary"></a>'; 
+			echo '<hr> <a href="../main/main-php"><input type="button" value="Volver" class="btn btn-primary"></a>'; 
 			}else{
    
 			      echo '<div class="alert alert-success" role="alert">';
-			      echo "Registro Guardado Exitosamente!!";
+			      echo "Registro Eliminado Exitosamente!!";
 			      echo "</div>";
 			      echo '<hr> <a href="../main/main.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 			      } 

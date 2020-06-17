@@ -12,6 +12,17 @@
 	  
 	  }
 	  
+	  	
+	if($varsession == null || $varsession = ''){
+	echo '<div class="alert alert-danger" role="alert">';
+	echo "Usuario o Contraseña Incorrecta. Reintente Por Favor...";
+	echo '<br>';
+	echo "O no tiene permisos o no ha iniciado sesion...";
+	echo "</div>";
+	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+	die();
+	}
+	  
       $id = $_GET['id'];
       $sql = "SELECT * FROM localidades WHERE id = '$id'";
       mysqli_select_db('mis_pastas');
@@ -114,7 +125,7 @@
   <div class="form-group">
    <div class="col-sm-offset-2 col-sm-12" align="left">
    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span>  Editar</button>
-   <a href="../main.php"><input type="button" value="Volver al Menú" class="btn btn-primary"></a>
+   <a href="../main/main.php"><input type="button" value="Volver al Menú" class="btn btn-primary"></a>
    </div>
   </div>
 </form> 
