@@ -1,4 +1,5 @@
 <?php include "connection/connection.php";
+      include "functions/functions.php";
 
 	$user = mysqli_real_escape_string($conn,$_POST["user"]);
 	$pass1 = mysqli_real_escape_string($conn,$_POST["pass"]);
@@ -19,23 +20,15 @@
 	}
 
 ?>
-  <html style="height: 100%">
-    <head>
+  <html style="height: 100%" lang="es">
+  <head>
     <meta charset="utf-8">
+    <title>Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="icons/emblems/emblem-new.png" />
-    <link rel="stylesheet" href="/sirhal-web/skeleton/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.css">
-	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/jquery.dataTables.min.css" >
-
-	<script src="/mispastas/skeleton/js/jquery-3.4.1.min.js"></script>
-	<script src="/mispastas/skeleton/js/bootstrap.min.js"></script>
-	<link rel="stylesheet"  type="text/css" media="screen" href="style.css" />
+   <?php skeleton();?>
 	
-    <title>Bienvenido</title>
+    
     </head>
     <body background="img/login-img.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover" style="height: 100%"><br>
     <div class="container">
