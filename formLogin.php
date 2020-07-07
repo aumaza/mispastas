@@ -46,7 +46,7 @@
 	
     		if(!$q && !$retval){	
 			echo '<div class="alert alert-danger" role="alert">';
-			echo "Error de Conexion..." .mysqli_error();
+			echo "Error de Conexion..." .mysqli_error($conn);
 			echo "</div>";
 			echo '<a href="index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 			exit;			

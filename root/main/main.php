@@ -30,31 +30,21 @@
 	<title>Mis Pastas - Panel Administrador</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
-	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.css">
-	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.min.css" >
-	<link rel="stylesheet" href="/mispastas/skeleton/css/jquery.dataTables.min.css" >
-
-	<script src="/mispastas/skeleton/js/jquery-3.4.1.min.js"></script>
-	<script src="/mispastas/skeleton/js/bootstrap.min.js"></script>
-	
-	<script src="/mispastas/skeleton/js/jquery.dataTables.min.js"></script>
-	<script src="/mispastas/skeleton/js/dataTables.editor.min.js"></script>
-	<script src="/mispastas/skeleton/js/dataTables.select.min.js"></script>
-	<script src="/mispastas/skeleton/js/dataTables.buttons.min.js"></script>
-
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet"  type="text/css" media="screen" href="login.css" />
+	<?php skeleton();?>
 	
 	
 	<!-- Data Table Script -->
 <script>
 
-      $(document).ready(function(){
+     $(document).ready(function(){
       $('#myTable').DataTable({
       "order": [[1, "asc"]],
+      "responsive": true,
+      "scrollY":        "300px",
+        "scrollX":        true,
+        "scrollCollapse": true,
+        "paging":         true,
+        "fixedColumns": true,
       "language":{
         "lengthMenu": "Mostrar _MENU_ registros por pagina",
         "info": "Mostrando pagina _PAGE_ de _PAGES_",
@@ -72,7 +62,6 @@
     });
 
   });
-
   </script>
   <!-- END Data Table Script -->
   
@@ -141,14 +130,10 @@
 	if($conn){
 	
 	  if(isset($_POST['A'])){
-	  
-		  loadUsers($conn);
-	  	  
+	  	  loadUsers($conn);
 	  }
 	  if(isset($_POST['B'])){
-	  
-		  loadAsk($conn);
-	  
+	  	  loadAsk($conn);
 	  }
 	  if(isset($_POST['C'])){
 		  addProductos($conn);
@@ -156,21 +141,14 @@
 	  if(isset($_POST['D'])){
 		  addLocalidad($conn);
 	  }
-	  
-	
-	
-	
-	
-	}else{
+	  }else{
 	  
 	      echo '<div class="alert alert-danger" role="alert">';
 	      echo '<span class="pull-center "><img src="../../icons/status/dialog-warning.png"  class="img-reponsive img-rounded"> Error de Conección. ' .mysqli_error($conn); 
 	      echo '</div>';
 	
 	}
-	
-	
-	
+		
 	?>
 	
 	

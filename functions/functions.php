@@ -1,4 +1,34 @@
 <?php
+
+/*
+* Funcion para montar skeleto del sistema
+*/
+
+function skeleton(){
+
+  echo '<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/css/bootstrap-theme.min.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.css">
+	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.min.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/css/jquery.dataTables.min.css" >
+
+	<script src="/mispastas/skeleton/js/jquery-3.4.1.min.js"></script>
+	<script src="/mispastas/skeleton/js/bootstrap.min.js"></script>
+	
+	<script src="/mispastas/skeleton/js/jquery.dataTables.min.js"></script>
+	<script src="/mispastas/skeleton/js/dataTables.editor.min.js"></script>
+	<script src="/mispastas/skeleton/js/dataTables.select.min.js"></script>
+	<script src="/mispastas/skeleton/js/dataTables.buttons.min.js"></script>
+
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet"  type="text/css" media="screen" href="login.css" />';
+
+
+}
+
+
+
 /*
 * Funcion para agregar usuarios al sistema
 */
@@ -139,7 +169,7 @@ if($conn)
 	echo '<div class="panel panel-warning" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
@@ -198,7 +228,7 @@ if($conn)
 	echo '<div class="panel panel-warning" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
@@ -257,7 +287,7 @@ if($conn)
 	echo '<div class="panel panel-warning" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Producto</th>
@@ -320,7 +350,7 @@ if($conn)
 	echo '<div class="panel panel-warning" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Fecha Pedido</th>
@@ -385,7 +415,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Localidades';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Cod. Localidad</th>
@@ -440,7 +470,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Imagen</th>
@@ -499,7 +529,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Imagen</th>
