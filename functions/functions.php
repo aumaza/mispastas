@@ -12,6 +12,8 @@ function skeleton(){
 	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.css">
 	<link rel="stylesheet" href="/mispastas/skeleton/css/fontawesome.min.css" >
 	<link rel="stylesheet" href="/mispastas/skeleton/css/jquery.dataTables.min.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/Chart.js/Chart.css" >
+	<link rel="stylesheet" href="/mispastas/skeleton/Chart.js/Chart.min.css" >
 
 	<script src="/mispastas/skeleton/js/jquery-3.4.1.min.js"></script>
 	<script src="/mispastas/skeleton/js/bootstrap.min.js"></script>
@@ -20,6 +22,11 @@ function skeleton(){
 	<script src="/mispastas/skeleton/js/dataTables.editor.min.js"></script>
 	<script src="/mispastas/skeleton/js/dataTables.select.min.js"></script>
 	<script src="/mispastas/skeleton/js/dataTables.buttons.min.js"></script>
+	
+	<script src="/mispastas/skeleton/Chart.js/Chart.js"></script>
+	<script src="/mispastas/skeleton/Chart.js/Chart.min.js"></script>
+	<script src="/mispastas/skeleton/Chart.js/Chart.bundle.js"></script>
+	<script src="/mispastas/skeleton/Chart.js/Chart.bundle.min.js"></script>
 
 	<link href="style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet"  type="text/css" media="screen" href="login.css" />';
@@ -296,7 +303,8 @@ if($conn)
                     <th class='text-nowrap text-center'>Cliente</th>
                     <th class='text-nowrap text-center'>Dirección</th>
                     <th class='text-nowrap text-center'>Celular</th>
-		    <th class='text-nowrap text-center'>A Entregar</th>
+                    <th class='text-nowrap text-center'>Estado</th>
+		    <th class='text-nowrap text-center'>Actualización Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -311,7 +319,8 @@ if($conn)
 			 echo "<td align=center>".$fila['cliente']."</td>";
 			 echo "<td align=center>".$fila['direccion']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
-			 echo "<td align=center>".$fila['f_entrega']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
 			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
@@ -360,7 +369,8 @@ if($conn)
                     <th class='text-nowrap text-center'>Cliente</th>
                     <th class='text-nowrap text-center'>Dirección</th>
                     <th class='text-nowrap text-center'>Celular</th>
-		    <th class='text-nowrap text-center'>A Entregar</th>
+                    <th class='text-nowrap text-center'>Estado</th>
+		    <th class='text-nowrap text-center'>Actualización Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -376,7 +386,8 @@ if($conn)
 			 echo "<td align=center>".$fila['cliente']."</td>";
 			 echo "<td align=center>".$fila['direccion']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
-			 echo "<td align=center>".$fila['f_entrega']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
 			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
