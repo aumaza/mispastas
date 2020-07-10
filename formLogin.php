@@ -41,7 +41,7 @@
 			echo '<div class="alert alert-danger" role="alert">';
 			echo "Error de Conexion..." .mysqli_error($conn);
 			echo "</div>";
-			echo '<a href="index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+			echo '<meta http-equiv="refresh" content="4;URL=http:logout.php "/>';
 			exit;			
 			
 			}
@@ -54,7 +54,7 @@
 				echo "<br>";
 				echo '<span class="pull-center "><img src="icons/status/security-low.png"  class="img-reponsive img-rounded"><strong> Usuario Bloqueado. Contacte al Administrador.</strong>';
 				echo "</div>";
-				echo '<a href="index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+				echo '<meta http-equiv="refresh" content="4;URL=http:logout.php "/>';
 				exit;
 			}
 
@@ -69,7 +69,7 @@
 				echo "<strong> Aguarde un Instante...</strong>";
 				echo "<br>";
 				echo "</div>";
-  				echo '<meta http-equiv="refresh" content="10;URL=http:root/main/main.php "/>';
+  				echo '<meta http-equiv="refresh" content="4;URL=http:root/main/main.php "/>';
 				//echo '<a href="root/main.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a><br>';		
 			}else{
 				echo '<div class="alert alert-success" role="alert">';
@@ -78,7 +78,7 @@
 				echo "<strong> Aguarde un Instante...</strong>";
 				echo "<br>";
 				echo "</div>";
-  				echo '<meta http-equiv="refresh" content="3;URL=http:1/main/main.php "/>';
+  				echo '<meta http-equiv="refresh" content="4;URL=http:1/main/main.php "/>';
 				//echo '<a href="1/main.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a><br>';
 			}
 			}else{
@@ -86,7 +86,7 @@
 				echo '<span class="pull-center "><img src="icons/status/dialog-warning.png"  class="img-reponsive img-rounded"> Usuario o Contraseña Incorrecta. Reintente Por Favor....';
 				//echo "Usuario o Contraseña Incorrecta. Reintente Por Favor...";
 				echo "</div>";
-				echo '<a href="index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+				echo '<meta http-equiv="refresh" content="4;URL=http:logout.php "/>';
 				}
 	
 			

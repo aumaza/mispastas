@@ -73,11 +73,11 @@ function agregarUser($nombre,$user,$pass1,$pass2,$role,$conn){
 * Funcion para editar la contraseña de los usuarios al sistema
 */
 
-function updatePass($user,$pass1,$pass2,$conn){
+function updatePass($id,$pass1,$pass2,$conn){
 
 	
 
-    	$sql = "UPDATE usuarios set password = '$pass1' WHERE user = '$user'";
+    	$sql = "UPDATE usuarios set password = '$pass1' WHERE id = '$id'";
     	mysqli_select_db('mis_pastas');
     	
     	
@@ -200,8 +200,8 @@ if($conn)
 			 echo "<td align=center>".$fila['telefono']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo '<a href="../usuario/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
+			 echo '<a href="../usuario/editPassword.php?nombre='.$fila['nombre'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
 			 echo "</td>";
 		}
 
@@ -389,8 +389,7 @@ if($conn)
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo '<a href="cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Actualizar Estado</a>';
 			 echo "</td>";
 		}
 
@@ -573,6 +572,136 @@ if($conn)
 		}
 
     mysqli_close($conn);
+
+
+}
+
+function editUser($id,$conn){
+
+  $sql = "select * from clientes where id = '$id'";
+      mysqli_select_db('agenda_sirhu');
+      $res = mysqli_query($conn,$sql);
+      $fila = mysqli_fetch_assoc($res);
+      
+
+      echo '<div class="container">
+	    <div class="row">
+	    <div class="col-sm-8">
+	      <h2>Editar Mis Datos</h2><hr>
+	        <form action="../usuario/formUpdate.php" method="POST">
+	        <input type="hidden" id="id" name="id" value="' . $fila['id'].'" />
+	        <div class="form-group">
+		  <label for="nombre">Nombre y Apellido:</label>
+		  <input type="text" class="form-control" id="nombre" name="nombre" value="'.$fila['nombre'].'" onkeyup="this.value=Text(this.value);" onKeyDown="limitText(this,40);" onKeyUp="limitText(this,40);" required>
+		</div>
+		<div class="form-group">
+		  <label for="email">Email:</label>
+		  <input type="email" class="form-control" id="email" name="email" value="'.$fila['email'].'" onKeyDown="limitText(this,40);" onKeyUp="limitText(this,40);" required>
+		</div>
+		<div class="form-group">
+		  <label for="pwd">Dirección:</label>
+		  <input type="text" class="form-control" id="direccion" name="direccion" value="'.$fila['direccion'].'" onKeyUp="limitText(this,70);" required>
+		</div>
+		<div class="form-group">
+		  <label for="pwd">Localidad:</label>
+		  <input type="text" class="form-control" id="localidad" name="localidad" value="'.$fila['localidad'].'" onkeyup="this.value=Text(this.value);" onKeyDown="limitText(this,60);" onKeyUp="limitText(this,60);" required>
+		</div>
+		<div class="form-group">
+		  <label for="pwd">Teléfono:</label>
+		  <input type="text" class="form-control" id="telefono" name="telefono" value="'.$fila['telefono'].'" onkeyup="this.value=Numeros(this.value);" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required>
+		</div>
+		<div class="form-group">
+		  <label for="pwd">Celular:</label>
+		  <input type="text" class="form-control" id="celular" name="celular" value="'.$fila['celular'].'" onkeyup="this.value=Numeros(this.value);" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required>
+		</div>
+		
+		<button type="submit" class="btn btn-success" name="A">Editar</button>
+	      </form> <br>
+	      <a href="../main/main.php"><input type="button" value="Volver" class="btn btn-primary"></a>
+	      
+	    </div>
+	    </div>
+	</div>';
+
+}
+
+
+function updateUser($id,$nombre,$email,$tel,$cel,$dir,$loc,$conn){
+
+		
+	mysqli_select_db('agenda_sirhu');
+	$sqlInsert = "update clientes set nombre = '$nombre', email = '$email', telefono = '$tel', celular = '$cel',
+	direccion = '$dir', localidad = '$loc' where id = '$id'";
+           
+	$res = mysqli_query($conn,$sqlInsert);
+
+
+	if($res){
+		//mysqli_query($conn,$sqlInsert);
+		echo "<br>";
+		echo '<div class="container">';
+		echo '<div class="alert alert-success" role="alert">';
+		echo 'Registro Actualizado Exitosamente. Aguarde un Instante que será Redireccionado';
+		echo "</div>";
+		echo "</div>";	
+	}else{
+		echo "<br>";
+		echo '<div class="container">';
+		echo '<div class="alert alert-warning" role="alert">';
+		echo "Hubo un error al actualizar el registro!. Aguarde un Instante que será Redireccionado" .mysqli_error($conn);
+		echo "</div>";
+		echo "</div>";
+	}
+}
+
+
+function editPassUser($nombre,$conn){
+
+$sql = "select * from usuarios where nombre = '$nombre'";
+      mysqli_select_db('mis_pastas');
+      $res = mysqli_query($conn,$sql);
+      $fila = mysqli_fetch_assoc($res);
+    
+
+      echo '<div class="container">
+	    <div class="row">
+	    <div class="col-sm-8">
+	      <h2>Cambiar Password</h2><hr>
+	      
+	      <form action="update_password.php" method="post">
+	      <input type="hidden" id="id" name="id" value="' . $fila['id'].'" />
+	  
+	  <div class="input-group">
+	    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	    <input id="text" type="text" class="form-control" value="' . $fila['nombre'].'" name="nombre" value="" onkeyup="this.value=Text(this.value);" readonly required>
+	  </div>
+	
+	  <div class="input-group">
+	    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	    <input id="text" type="text" class="form-control" name="user" onKeyDown="limitText(this,20);" onKeyUp="limitText(this,20);" value="' . $fila['user'].'" readonly required>
+	  </div>
+	  <div class="input-group">
+	    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	    <input id="password" type="password" class="form-control" name="pass1" onKeyDown="limitText(this,15);" onKeyUp="limitText(this,15);" placeholder="Password" >
+	  </div>
+	  <div class="input-group">
+	    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	    <input  type="password" class="form-control" name="pass2" onKeyDown="limitText(this,15);" onKeyUp="limitText(this,15);" placeholder="Repita Password" >
+	  </div>
+	  <br>
+	
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-12" align="left">
+	  <button type="submit" class="btn btn-success" name="A"><span class="glyphicon glyphicon-pencil"></span>  Cambiar Password</button>
+	  <a href="../main/main.php"><input type="button" value="Volver al Menú Principal" class="btn btn-primary"></a>
+	  </div>
+	  </div>
+	</form> 
+	      
+	      </div>
+	      </div>
+	      </div>';
+
 
 
 }
