@@ -173,7 +173,7 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 
-	echo '<div class="panel panel-warning" >
+	echo '<div class="panel panel-default" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
@@ -232,7 +232,7 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
+	echo '<div class="panel panel-default" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
@@ -286,13 +286,13 @@ function loadUserAsk($nombre,$conn){
 
 if($conn)
 {
-	$sql = "SELECT * FROM pedidos where nombre = '$nombre'";
+	$sql = "SELECT * FROM pedidos where cliente = '$nombre'";
     	mysqli_select_db('mis_pastas');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
+	echo '<div class="panel panel-default" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
@@ -301,7 +301,9 @@ if($conn)
                     <th class='text-nowrap text-center'>Cantidad</th>
                     <th class='text-nowrap text-center'>Importe</th>
                     <th class='text-nowrap text-center'>Cliente</th>
+                    <th class='text-nowrap text-center'>Email</th>
                     <th class='text-nowrap text-center'>Dirección</th>
+                    <th class='text-nowrap text-center'>Localidad</th>
                     <th class='text-nowrap text-center'>Celular</th>
                     <th class='text-nowrap text-center'>Estado</th>
 		    <th class='text-nowrap text-center'>Actualización Estado</th>
@@ -317,7 +319,9 @@ if($conn)
 			 echo "<td align=center>".$fila['cantidad']."</td>";
 			 echo "<td align=center>".$fila['precio']."</td>";
 			 echo "<td align=center>".$fila['cliente']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
 			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td align=center>".$fila['update_est']."</td>";
@@ -356,8 +360,8 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
+	echo '<div class="panel panel-default" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
@@ -379,7 +383,7 @@ if($conn)
 			  // Listado normal
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
-			 echo "<td align=center>".$fila['fecha Pedido']."</td>";
+			 echo "<td align=center>".$fila['fecha']."</td>";
 			 echo "<td align=center>".$fila['producto']."</td>";
 			 echo "<td align=center>".$fila['cantidad']."</td>";
 			 echo "<td align=center>".$fila['precio']."</td>";
@@ -476,8 +480,8 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
+	echo '<div class="panel panel-default" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
@@ -535,8 +539,8 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
+	echo '<div class="panel panel-default" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
             echo "<table class='display compact' style='width:100%' id='myTable'>";
@@ -558,7 +562,7 @@ if($conn)
 			 echo "<td align=center>".$fila['descripcion']."</td>";
 			 echo "<td align=center>".$fila['precio']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="productos/nuevoPedido.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Hacer Pedido</a>';
+			 echo '<a href="../pedidos/newPedido.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Hacer Pedido</a>';
 			 echo "</td>";
 			 $count++;
 		}

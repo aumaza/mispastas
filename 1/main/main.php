@@ -23,6 +23,16 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
+	
+	$date = strftime("%Y-%m-%d");
+	$query = "select * from pedidos where estado = 'Aprobado' and cliente = '$nombre' order by fecha desc";
+	mysqli_select_db('mis_pastas');
+	$res = mysqli_query($conn,$query);
+	while($fila = mysqli_fetch_array($res)){
+	      $count++;
+	}
+	$msg1 = "Aún no tiene Pedidos Aprobados"; 
+	$msg2 = "Tiene ".$count. " pedido/s Aprobado/s";
 ?>
 
 <html style="height: 100%" lang="es"><head>
@@ -91,6 +101,26 @@ $(document).ready(function(){
 	</div>
 	</div><hr>
 <!-- end user and system information -->
+		<div class="container">
+		<div class="row">
+		<div class="col-md-12 text-center">
+		<?php 
+		if($count == 0){
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-uncertain.png" /><strong> '.$msg1.'</strong>
+			    </div>';
+		  }else{
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-smile.png" /><strong> '.$msg2.'</strong>
+			    </div>';
+		      }
+      
+		?>
+		</div>
+		</div>
+		</div>
 
 
 <div class="container-fluid">
@@ -102,15 +132,15 @@ $(document).ready(function(){
 <div class="container-fluid">
     <div class="row">
       <nav class="col-xs-2" id="myScrollspy">
-      <div class="panel panel-warning" >
-      <div class="panel-heading"><span class="pull-center "><img src="../../icons/categories/preferences-desktop.png"  class="img-reponsive img-rounded"> Panel Usuario</div><br>
+      <div class="panel panel-default" >
+      <div class="panel-heading"><span class="pull-center "><img src="../../icons/categories/preferences-desktop.png"  class="img-reponsive img-rounded"> Panel Usuario: <?php echo $nombre; ?></div><br>
 	
           <form action="main.php" method="POST">
           <div class="btn-group-vertical" >
           <form action="main.php" method="POST">
 	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</button>
-	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</button>
-	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Catálogo</button>
+	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Mis Pedidos</button>
+	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos</button>
 	  </div> 
 	  </form>
        

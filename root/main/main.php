@@ -23,6 +23,17 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
+	
+	$date = strftime("%Y-%m-%d");
+	$query = "select * from pedidos where estado = 'stand-by' and fecha = '$date' order by fecha desc";
+	mysqli_select_db('mis_pastas');
+	$res = mysqli_query($conn,$query);
+	while($fila = mysqli_fetch_array($res)){
+	      $count++;
+	}
+	$msg1 = "Aún no han ingresado Pedidos"; 
+	$msg2 = "Tiene ".$count. " pedido/s nuevo/s";
+	
 ?>
 
 <html style="height: 100%" lang="es"><head>
@@ -92,6 +103,26 @@
 	</div>
 	</div><hr>
 <!-- end user and system information -->
+		<div class="container">
+		  <div class="row">
+		  <div class="col-md-12 text-center">
+		<?php 
+		if($count == 0){
+		      echo '<div class="alert alert-info alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-uncertain.png" /><strong> '.$msg1.'</strong>
+			    </div>';
+		  }else{
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-smile.png" /><strong> '.$msg2.'</strong>
+			    </div>';
+		      }
+      
+		?>
+		</div>
+		</div>
+		</div>
 
 
 <div class="container-fluid">
@@ -103,15 +134,15 @@
 <div class="container-fluid">
     <div class="row">
       <nav class="col-xs-2" id="myScrollspy">
-      <div class="panel panel-warning" >
-      <div class="panel-heading"><span class="pull-center "><img src="../../icons/categories/preferences-desktop.png"  class="img-reponsive img-rounded"> Panel Usuario</div><br>
+      <div class="panel panel-default" >
+      <div class="panel-heading"><span class="pull-center "><img src="../../icons/categories/preferences-desktop.png"  class="img-reponsive img-rounded"> Panel del <?php echo $nombre;?></div><br>
 	
           <form action="main.php" method="POST">
           <div class="btn-group-vertical" >
           <form action="main.php" method="POST">
 	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</button>
-	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</button>
-	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos</button>
+	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</button>
+	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos</button>
 	    <button type="submit" class="btn btn-default" name="D"><span class="pull-center "><img src="../../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Cargar Localidades</button>
 	    <button type="submit" class="btn btn-default" name="E"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Total Vendido</button>
 	  </div> 
