@@ -4,9 +4,10 @@
 <html lang="es">
 <head>
   <!-- Theme Made By slackzone -->
-  <title>Manduca - Pastas Caseras</title>
+  <title>Manduca - Tienda de Pastas</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="icons/emblems/emblem-new.png" />
   <?php skeleton(); ?>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -209,7 +210,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Home</a>
+      <a class="navbar-brand" href="#myPage">Manduca / Tienda de Pastas</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -226,7 +227,10 @@
 
 <div class="jumbotron text-center">
   <h1>INGRESO</h1> 
-  <p>Ingresá tus Datos</p> 
+  <p>Ingresá tus Datos</p>
+  <div class="container">
+  <div class="row">
+  <div class="col-sm-12">
   <form action="formLogin.php" method="POST">
   <div class="form-group">
     <label for="usuario">Usuario:</label>
@@ -238,7 +242,7 @@
   </div>
    <button type="submit" class="btn btn-default">Ingresar</button>
 </form> 
-</div>
+</div></div></div></div>
 
 <!-- Container (About Section) -->
 <div id="about" class="container-fluid">

@@ -1,6 +1,6 @@
 <?php include "../../connection/connection.php";
       include "../../functions/functions.php";
-	
+      
 	session_start();
 	$varsession = $_SESSION['user'];
 	
@@ -14,17 +14,34 @@
 	die();
 	}
 	
-	
+	$id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Pedido Exitoso</title>
+  <title>Pedido - Cambio de Estado</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
 	<?php skeleton();?>
+	
+	<!-- block mouse left-button   -->
+  <script>
+      $(document).bind("contextmenu",function(e) {
+    e.preventDefault();
+    });
+  </script>
+<!-- block F12 development mode -->
+  <script>
+      $(document).keydown(function(e){
+	if(e.which === 123){
+	  return false;
+	}
+    });
+  </script>
+  
+  
 	<!-- Data Table Script -->
 <script>
 
@@ -51,21 +68,7 @@
 
   </script>
   <!-- END Data Table Script -->
-
-  <!-- block mouse left-button   -->
-  <script>
-      $(document).bind("contextmenu",function(e) {
-    e.preventDefault();
-    });
-  </script>
-<!-- block F12 development mode -->
-  <script>
-      $(document).keydown(function(e){
-	if(e.which === 123){
-	  return false;
-	}
-    });
-  </script>
+  
 
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
@@ -106,7 +109,7 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1>Manduca - Tienda de Pastas</h1>      
-    <h2>Pedidos Online</h2>
+    <h2>Pedidos - Cambio de Estado</h2>
     <a href="../main/main.php"><button class="btn btn-default"><img src="../../icons/actions/arrow-left.png" /><strong> Volver</strong></button></a>
   </div>
 </div><br>
@@ -121,37 +124,25 @@
 	 
 	 if($conn){
 		  
-		 //captura datos del producto 
-		 $descripcion = mysqli_real_escape_string($conn,$_POST["descripcion"]);
-		 $importe = mysqli_real_escape_string($conn,$_POST["importe"]);
-		 $cantidad = mysqli_real_escape_string($conn,$_POST["cantidad"]);
-		 //captura datos del cliente
-		 $cl_nombre = mysqli_real_escape_string($conn,$_POST["cl_nombre"]);
-		 $cl_email = mysqli_real_escape_string($conn,$_POST["cl_email"]);
-		 $cl_celular = mysqli_real_escape_string($conn,$_POST["cl_celular"]);
-		 $cl_direccion = mysqli_real_escape_string($conn,$_POST["cl_direccion"]);
-		 $cl_localidad = mysqli_real_escape_string($conn,$_POST["cl_localidad"]);
-				
-		
-		$sql = "insert into pedidos ".
-		       "(fecha,producto,cantidad,precio,cliente,email,direccion,localidad,celular,update_est)".
-		       "VALUES ".
-		       "(NOW(),'$descripcion','$cantidad','$importe','$cl_nombre','$cl_email','$cl_direccion','$cl_localidad','$cl_celular',NOW())";
-		
+		 $id = mysqli_real_escape_string($conn,$_POST["id"]); 
+		 $estado = mysqli_real_escape_string($conn,$_POST["estado"]);
+	 
+		$sql = "UPDATE pedidos set estado = '$estado', update_est = NOW() where id = '$id'";
 		mysqli_select_db('mis_pastas');
 		$retval = mysqli_query($conn,$sql);
 		
 		if(!$retval){
 			echo '<div class="alert alert-danger" role="alert">';
 			echo 'Could not enter data: ' . mysqli_error($conn);
+			echo ' <audio  autoplay><source src="../../sounds/KDE-Sys-App-Message.ogg" type="audio/ogg" /></audio>';
 			echo "</div>";
-			echo '<meta http-equiv="refresh" content="4;URL=http:../main/main.php"/>';
+			echo '<meta http-equiv="refresh" content="5;URL=http:../main/main.php"/>';
 			}else{
 			      echo '<div class="alert alert-success" role="alert">';
-			      echo "Pedido enviado Exitosamente!!";
-			      echo "</div>";
+			      echo "Estado Actualizado Exitosamente!!";
 			      echo ' <audio  autoplay><source src="../../sounds/KDE-K3B-Insert-Medium.ogg" type="audio/ogg" /></audio>';
-			      echo '<meta http-equiv="refresh" content="4;URL=http:../main/main.php"/>';
+			      echo "</div>";
+			      echo '<meta http-equiv="refresh" content="5;URL=http:../main/main.php"/>';
 			      } 
 		    
 		

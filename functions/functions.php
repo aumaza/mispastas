@@ -326,8 +326,7 @@ if($conn)
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo ' <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-qrcode"></span> QR</button>';
 			 echo "</td>";
 			 $count++;
 		}
@@ -393,8 +392,9 @@ if($conn)
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Actualizar Estado</a>';
+			 echo '<a href="../pedidos/cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Actualizar Estado</a>';
 			 echo "</td>";
+			 $count++;
 		}
 
 		echo "</table>";

@@ -26,16 +26,11 @@
 	die();
 	}
 	
-           
-      $descripcion = $_GET['descripcion'];
-      $importe = $_GET['importe'];
-      $cantidad = $_GET['cantidad'];
-      $cl_nombre = $_GET['cl_nombre'];
-      $cl_email = $_GET['cl_email'];
-      $cl_celular = $_GET['cl_celular'];
-      $cl_direccion = $_GET['cl_direccion'];
-      $cl_localidad = $_GET['cl_localidad'];
-     
+	$id = $_GET['id'];
+        $sql = "select * from pedidos where id = '$id'";
+	mysqli_select_db('mis_pastas');
+	$resp = mysqli_query($conn,$sql);
+	$line = mysqli_fetch_assoc($resp);
       
      
 ?>
@@ -43,11 +38,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Pedidos</title>
+  <title>Pedidos - Cambio de Estado</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
+  <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
 	<?php skeleton();?>
+	
+	<!-- block mouse left-button   -->
+  <script>
+      $(document).bind("contextmenu",function(e) {
+    e.preventDefault();
+    });
+  </script>
+<!-- block F12 development mode -->
+  <script>
+      $(document).keydown(function(e){
+	if(e.which === 123){
+	  return false;
+	}
+    });
+  </script>
+  
   
 	<!-- Data Table Script -->
 <script>
@@ -75,21 +86,6 @@
 
   </script>
   <!-- END Data Table Script -->
-  
-  <!-- block mouse left-button   -->
-  <script>
-      $(document).bind("contextmenu",function(e) {
-    e.preventDefault();
-    });
-  </script>
-<!-- block F12 development mode -->
-  <script>
-      $(document).keydown(function(e){
-	if(e.which === 123){
-	  return false;
-	}
-    });
-  </script>
   
 
   <style>
@@ -131,26 +127,11 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1>Manduca - Tienda de Pastas</h1>      
-    <h2>Pedidos Online</h2>
+    <h2>Pedido - Cambiar Estado</h2>
     <a href="../main/main.php"><button class="btn btn-default"><img src="../../icons/actions/arrow-left.png" /><strong> Volver</strong></button></a>
   </div>
 </div><br>
-      <?php 
-      if($cantidad < 1){
-	 echo '<div class="alert alert-danger" role="alert">';
-	 echo 'La cantidad mínima debe ser 1';
-         echo "</div>";
-	 echo '<meta http-equiv="refresh" content="6;URL=http:../main/main.php"/>';
-	 exit;
-      }if($cantidad == 1){
-	$resultado =  $importe;
-      }else{
-	$resultado = $cantidad * $importe;
-      }
       
-      
-      ?>
-
 	  <div class="container">
 	      <div class="row">
 	      <div class="col-sm-12">
@@ -160,43 +141,45 @@
 	      </div>
 	      <br>
 	  
-	   <form action="form_final.php" method="POST">
+	   <form action="form_update_estado.php" method="POST">
+	   <input type="hidden" class="form-control" name="id" value="<?php echo $line['id']; ?>" readonly required>
 	    
 	   <div class="container">
 	   <div class="row">
-	   <div class="col-sm-5">
-	      <div class="input-group">
+	  <div class="col-sm-5">
+	   <div class="input-group">
 	      <span class="input-group-addon">Descripción</span>
-	      <input id="text" type="text" class="form-control" name="descripcion" value="<?php echo $descripcion; ?>" readonly required>
-	    </div></div></div></div><hr>
+	      <input id="text" type="text" class="form-control" name="descripcion" value="<?php echo $line['producto']; ?>" readonly required>
+	    </div></div>
 	    
 	    <div class="container">
 	   <div class="row">
 	   <div class="col-sm-5">
 	    <div class="input-group">
 	     <span class="input-group-addon">Importe $</span>
-	      <input id="text" type="text" class="form-control" name="importe" value="<?php echo $resultado; ?>" readonly required>
-	    </div></div>
+	      <input id="text" type="text" class="form-control" name="importe" value="<?php echo $line['precio']; ?>" readonly required>
+	    </div></div></div></div><hr>
 	    
+	   <div class="container">
+	   <div class="row">
 	   <div class="col-sm-5">
 	    <div class="input-group">
 	     <span class="input-group-addon">Cantidad</span>
-	      <input id="number" type="text" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" readonly required>
+	      <input id="number" type="text" class="form-control" name="cantidad" value="<?php echo $line['cantidad']; ?>" readonly required>
 	    </div></div></div></div><hr>
-	  
-	  
+	 	  
 	  <div class="container">
 	  <div class="row">
 	  <div class="col-sm-5">
 	  <div class="input-group">
 	     <span class="input-group-addon">Nombre y Apellido</span>
-	      <input id="text" type="text" class="form-control" name="cl_nombre" value="<?php echo $cl_nombre; ?>" readonly required>
+	      <input id="text" type="text" class="form-control" name="cl_nombre" value="<?php echo $line['cliente']; ?>" readonly required>
 	    </div></div>
 	    
 	    <div class="col-sm-5">
 	  <div class="input-group">
 	     <span class="input-group-addon">Email</span>
-	      <input id="email" type="text" class="form-control" name="cl_email" value="<?php echo $cl_email; ?>" readonly required>
+	      <input id="email" type="text" class="form-control" name="cl_email" value="<?php echo $line['email']; ?>" readonly required>
 	    </div></div></div></div><hr>
 	    
 	    <div class="container">
@@ -204,13 +187,13 @@
 	  <div class="col-sm-5">
 	  <div class="input-group">
 	     <span class="input-group-addon">Celular</span>
-	      <input id="text" type="text" class="form-control" name="cl_celular" value="<?php echo $cl_celular; ?>" readonly required>
+	      <input id="text" type="text" class="form-control" name="cl_celular" value="<?php echo $line['celular']; ?>" readonly required>
 	    </div></div>
 	    
 	    <div class="col-sm-5">
 	  <div class="input-group">
 	     <span class="input-group-addon">Dirección</span>
-	      <input id="text" type="text" class="form-control" name="cl_direccion" value="<?php echo $cl_direccion; ?>" readonly required>
+	      <input id="text" type="text" class="form-control" name="cl_direccion" value="<?php echo $line['direccion']; ?>" readonly required>
 	    </div></div></div></div><hr>
 	    
 	    <div class="container">
@@ -218,25 +201,28 @@
 	  <div class="col-sm-5">
 	  <div class="input-group">
 	     <span class="input-group-addon">Localidad</span>
-	      <input id="text" type="text" class="form-control" name="cl_localidad" value="<?php echo $cl_localidad; ?>" readonly required>
-	    </div></div>
-	    </div></div><hr>
+	      <input id="text" type="text" class="form-control" name="cl_localidad" value="<?php echo $line['localidad']; ?>" readonly required>
+	    </div></div></div></div><hr>
 	    
-	    
-	    <div class="container">    
+	  
+	   <div class="container">
 	  <div class="row">
-	<div class="col-sm-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">Scanea el Código QR con la APP Mercado Pago en tu Celular. <strong>Recordá que si das a Finalizar sin haber scaneado y pagado,
-         el pedido quedará en stand-by hasta que se registre el pago correspondiente.
-         Si preferis continuar, podrás scannear el código QR luego, desde el botón "Mis Pedidos" y finalizar tu compra.</strong></div>
-        <div class="panel-body"><img src="../../img/qr_mp_tshirts.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Tu importe es: $<?php echo $resultado; ?></div>
-      </div>
-    </div>
+	   <div class="col-sm-5">
+	    <div class="input-group">
+	    <span class="input-group-addon">Estado</span>
+	    <select class="browser-default custom-select" name="estado" required>
+	    <option value="" disabled selected>Seleccionar</option>
+	    <option value="stand-by" <?php if($line['estado'] == 'stand-by') echo 'selected'; ?>>Stand-By</option>
+	    <option value="Aprobado" <?php if($line['estado'] == 'Aprobado') echo 'selected'; ?>>Aprobado</option>
+	    <option value="Rechazado" <?php if($line['estado'] == 'Rechazado') echo 'selected'; ?> >Rechazado</option>
+	    <option value="Entregado" <?php if($line['estado'] == 'Entregado') echo 'selected'; ?> >Entregado</option>
+	    </select>
+	  </div>
+	  </div>
 	  </div>
 	  </div><hr>
-	  
+	    
+	     
 	  
 	  <div class="container">
 	   <div class="row">

@@ -1,19 +1,16 @@
-<?php  include "../../functions/functions.php";
-       include "../../connection/connection.php";
-
-	session_start();
+<?php include "../../connection/connection.php";
+      include "../../functions/functions.php";
+      
+      session_start();
 	$varsession = $_SESSION['user'];
 	
-	$sql = "SELECT nombre FROM usuarios where user = '$varsession'";
-	mysqli_select_db('mis_pastas');
-        $retval = mysqli_query($conn,$sql);
-        
-        while($fila = mysqli_fetch_array($retval)){
-	  $nombre = $fila['nombre'];
-	  
-	  }
-	  
-		
+	$sql = "select nombre from usuarios where user = '$varsession'";
+	mysqli_select_db('t_shirts');
+	$query = mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_array($query)){
+	      $nombre = $row['nombre'];
+	}
+	
 	if($varsession == null || $varsession = ''){
 	echo '<div class="alert alert-danger" role="alert">';
 	echo "Usuario o Contraseña Incorrecta. Reintente Por Favor...";
@@ -24,30 +21,57 @@
 	die();
 	}
 	
+	$aprobado = 0;
+	$sql = "select * from pedidos where estado = 'Aprobado'";
+	mysqli_select_db('mis_pastas');
+	$ret = mysqli_query($conn,$sql);
+	while($line = mysqli_fetch_array($ret)){
+	      $aprobado++;
+	}
+	
+	$entregado = 0;
+	$ql = "select * from pedidos where estado = 'Entregado'";
+	mysqli_select_db('mis_pastas');
+	$val = mysqli_query($conn,$ql);
+	while($line = mysqli_fetch_array($val)){
+	      $entregado++;
+	}
+	
+	$contador = 0;
+	$q = "select * from pedidos where estado = 'stand-by'";
+	mysqli_select_db('mis_pastas');
+	$resval = mysqli_query($conn,$q);
+	while($linea = mysqli_fetch_array($resval)){
+	      $contador++;
+	}
+	
 	$date = strftime("%Y-%m-%d");
+	$count = 0;
 	$query = "select * from pedidos where estado = 'stand-by' and fecha = '$date' order by fecha desc";
 	mysqli_select_db('mis_pastas');
 	$res = mysqli_query($conn,$query);
 	while($fila = mysqli_fetch_array($res)){
 	      $count++;
 	}
-	$msg1 = "Aún no han ingresado Pedidos"; 
+	$msg1 = "Aún no han ingresado Pedidos hoy"; 
 	$msg2 = "Tiene ".$count. " pedido/s nuevo/s";
 	
+      
+      
 ?>
 
-<html style="height: 100%" lang="es"><head>
-	<meta charset="utf-8">
-	<title>Mis Pastas - Panel Administrador</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
-	<?php skeleton();?>
-	
-	
-	<!-- Data Table Script -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Panel del Usuario</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
+  <?php skeleton();?>
+  
+  <!-- Data Table Script -->
 <script>
-
-     $(document).ready(function(){
+ $(document).ready(function(){
       $('#myTable').DataTable({
       "order": [[1, "asc"]],
       "responsive": true,
@@ -76,34 +100,75 @@
   </script>
   <!-- END Data Table Script -->
   
-    <style>
-.avatar {
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+ .avatar {
   vertical-align: middle;
   horizontal-align: right;
   width: 60px;
   height: 60px;
   border-radius: 60%;
 }
-</style>
-	
+   
+  </style>
+<!-- refresca la pagina cada 20 segundos  -->
+  <meta http-equiv="refresh" content="20" />
 </head>
-<body  background="../../img/background.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100%">
-<br>
-<!--User and System Information -->
-<div class="container-fluid">
-      <div class="row">
-      <div class="col-md-12 text-center">
-	<a href="../../logout.php"><button><span class="glyphicon glyphicon-log-out"></span> Salir</button></a>
-	<button><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $nombre ?></button>
-	<?php setlocale(LC_ALL,"es_ES"); ?>
-	<button><span class="glyphicon glyphicon-time"></span> <?php echo "Hora Actual: " . date("H:i"); ?></button>
-	 <?php setlocale(LC_ALL,"es_ES"); ?>
-	<button><span class="glyphicon glyphicon-calendar"></span> <?php echo "Fecha Actual: ". strftime("%d de %b de %Y"); ?> </button>
-	</div>
-	</div>
-	</div><hr>
-<!-- end user and system information -->
-		<div class="container">
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+       <button type="button" class="btn btn-default"><img src="../../icons/actions/chronometer.png"  class="img-reponsive img-rounded"> Pedidos en Espera <span class="badge"><?php echo $contador ?></span></button> 
+       <button type="button" class="btn btn-default"><img src="../../icons/actions/rating.png"  class="img-reponsive img-rounded"> Pedidos Nuevos <span class="badge"><?php echo $count ?></span></button>
+       <button type="button" class="btn btn-default"><img src="../../icons/actions/games-endturn.png"  class="img-reponsive img-rounded"> Pedidos Aprobados <span class="badge"><?php echo $aprobado?></span></button>
+       <button type="button" class="btn btn-default"><img src="../../icons/actions/im-aim.png"  class="img-reponsive img-rounded"> Pedidos Entregados <span class="badge"><?php echo $entregado ?></span></button>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../../logout.php"><img class="img-reponsive img-rounded" src="../../icons/actions/go-previous-view.png" /> Salir</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+	      <div class="container">
 		  <div class="row">
 		  <div class="col-md-12 text-center">
 		<?php 
@@ -116,6 +181,9 @@
 		      echo '<div class="alert alert-success alert-dismissible">
 			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-smile.png" /><strong> '.$msg2.'</strong>
+			      <audio  autoplay>
+			      <source src="../../sounds/KDE-Im-Sms.ogg" type="audio/ogg" />
+			      </audio>
 			    </div>';
 		      }
       
@@ -123,40 +191,24 @@
 		</div>
 		</div>
 		</div>
-
-
-<div class="container-fluid">
-
-<div class="row">
-<div class="col-xs-12"><br>
-
-<!-- Dashboard -->
-<div class="container-fluid">
-    <div class="row">
-      <nav class="col-xs-2" id="myScrollspy">
-      <div class="panel panel-default" >
-      <div class="panel-heading"><span class="pull-center "><img src="../../icons/categories/preferences-desktop.png"  class="img-reponsive img-rounded"> Panel del <?php echo $nombre;?></div><br>
-	
-          <form action="main.php" method="POST">
-          <div class="btn-group-vertical" >
-          <form action="main.php" method="POST">
-	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</button>
-	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</button>
-	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos</button>
-	    <button type="submit" class="btn btn-default" name="D"><span class="pull-center "><img src="../../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Cargar Localidades</button>
-	    <button type="submit" class="btn btn-default" name="E"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Total Vendido</button>
-	  </div> 
-	  </form>
-       
-        </div>
-      </nav>
-     
-     <div class="col-xs-10">
-      <div class="row">
-	<nav class="col-xs-12" id="myScrollspy">
-	  
-	  
-	<?php
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <div class="btn-group-vertical">
+      <form action="main.php" method="POST">
+	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</button><hr>
+	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</button><hr>
+	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos</button><hr>
+	    <button type="submit" class="btn btn-default" name="D"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Total Vendido</button>
+	</form>
+      </div> 
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Bienvenido/a <?php echo $nombre ?></h1>
+      <p>Seleccione la opción a realizar desde el Panel a su Izquierda</p>
+      <hr><br>
+   <?php
 	
 	if($conn){
 	
@@ -169,9 +221,6 @@
 	  if(isset($_POST['C'])){
 		  addProductos($conn);
 	  }
-	  if(isset($_POST['D'])){
-		  addLocalidad($conn);
-	  }
 	  }else{
 	  
 	      echo '<div class="alert alert-danger" role="alert">';
@@ -181,21 +230,30 @@
 	}
 		
 	?>
-	
-	
-	
-	</nav>
-       </div>
-     </div>
+   
+   
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p align="left"><img class="img-reponsive img-rounded" src="../../icons/actions/meeting-attending.png" /> <strong>Usuario:</strong> <?php echo $nombre ?></p>
+      </div>
+      <div class="well">
+        <p align="left"><img class="img-reponsive img-rounded" src="../../icons/actions/view-calendar-day.png" /> <?php echo "<strong>Fecha Actual:</strong> ". strftime("%d de %b de %Y"); ?></p>
+      </div>
+      <div class="well">
+        <p align="left"><img class="img-reponsive img-rounded" src="../../icons/apps/clock.png" /> <?php echo "<strong>Hora Actual:</strong> " . date("H:i"); ?></p>
+      </div>
     </div>
   </div>
-<!-- end dashboard -->
-
-</div>
-</div>
 </div>
 
-<!-- Modal -->
+<footer class="container-fluid text-center">
+  <p><img class="img-reponsive img-rounded" src="../../icons/emblems/emblem-new.png" /> Manduca - Tienda de Pastas</p>
+</footer>
+
+
+		
+	<!-- Modal -->
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -226,8 +284,6 @@
 		</script>
 		
 		<!-- END Modal -->
-		
-
 
 </body>
 </html>
