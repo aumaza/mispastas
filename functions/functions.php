@@ -34,6 +34,40 @@ function skeleton(){
 
 }
 
+/*
+* Funcion para agregar clientes al sistema
+*/
+function addCliente($nombre,$email,$dir,$loc,$tel,$cel,$conn){
+  
+  $sql = "insert into clientes ".
+	  "(nombre,email,direccion,localidad,telefono,celular)".
+	  "VALUES ".
+	  "('$nombre','$email','$dir','$loc','$tel','$cel')";
+		
+		mysqli_select_db('mis_pastas');
+		$retval = mysqli_query($conn,$sql);
+		
+		if(!$retval){
+			echo "<br>";
+			echo '<div class="container">';
+			echo '<div class="alert alert-danger" role="alert">';
+			echo '<img src="../icons/status/task-attention.png"  class="img-reponsive img-rounded"> Could not enter data: ' . mysqli_error($conn);
+			echo "</div>";
+			echo "</div>";
+			//echo '<meta http-equiv="refresh" content="4;URL=http:../logout.php"/>';
+			}else{
+			      echo "<br>";
+			      echo '<div class="container">';
+			      echo '<div class="alert alert-success" role="alert">';
+			      echo '<img src="../icons/actions/games-endturn.png"  class="img-reponsive img-rounded"> Cliente Registro con Exito!!';
+			      echo "</div>";
+			      echo "</div>";      
+			      echo ' <audio  autoplay><source src="../sounds/KDE-K3B-Insert-Medium.ogg" type="audio/ogg" /></audio>';
+			      //echo '<meta http-equiv="refresh" content="4;URL=http:../logout.php"/>';
+			      } 
+		   
+
+}
 
 
 /*
@@ -56,14 +90,14 @@ function agregarUser($nombre,$user,$pass1,$pass2,$role,$conn){
 		echo "<br>";
 		echo '<div class="container">';
 		echo '<div class="alert alert-success" role="alert">';
-		echo 'Usuario Creado Satisfactoriamente';
+		echo '<img src="../icons/actions/games-endturn.png"  class="img-reponsive img-rounded"> Usuario Creado Satisfactoriamente';
 		echo "</div>";
 		echo "</div>";	
 	}else{
 		echo "<br>";
 		echo '<div class="container">';
 		echo '<div class="alert alert-warning" role="alert">';
-		echo "Las Contraseñas no Coinciden. Intente Nuevamente!";
+		echo '<img src="../icons/status/task-attention.png"  class="img-reponsive img-rounded"> Las Contraseñas no Coinciden. Intente Nuevamente!';
 		echo "</div>";
 		echo "</div>";
 	}
@@ -708,6 +742,169 @@ $sql = "select * from usuarios where nombre = '$nombre'";
 
 
 
+}
+
+
+/*
+** Funcion para generar archivo de password
+*/
+
+
+function gentxt($usuario,$password){
+  
+  $fileName = "gen_pass/$usuario.pass.txt"; 
+  //$mensaje = $password;
+  
+  if (file_exists($fileName)){
+  
+  //echo "Archivo Existente...";
+  //echo "Se actualizaran los datos...";
+  $file = fopen($fileName, 'w+') or die("Se produjo un error al crear el archivo");
+  
+  fwrite($file, $password) or die("No se pudo escribir en el archivo");
+  
+  fclose($file);
+  echo '<div class="container">
+	<div class="row">
+	<div class="col-md-6">';
+	echo '<div class="alert alert-info" role="alert">';
+	echo "Se ha generado su archivo de password. Descargue el archivo generado. Recuerde modificar su Password cuando ingrese nuevamente.";
+	echo "</div>";
+  echo "<hr>";
+  echo '<a href="download_pass.php?file_name='.$fileName.'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-save"></span> Descargar</a>';
+  echo '</div>
+	</div>
+	</div>';
+  
+  
+  }else{
+  
+      //echo "Se Generará archivo de respaldo..."
+      $file = fopen($fileName, 'w') or die("Se produjo un error al crear el archivo");
+      fwrite($file, $password) or die("No se pudo escribir en el archivo");
+      fclose($file);
+      
+      
+      echo '<div class="container">
+	    <div class="row">
+	    <div class="col-md-6">';
+        echo '<div class="alert alert-info" role="alert">';
+	echo "Se ha generado su archivo de password. Descargue el archivo generado. Recuerde modificar su Password cuando ingrese nuevamente.";
+	echo "</div>";
+        echo "<hr>";
+        echo '<a href="download_pass.php?file_name='.$fileName.'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-save"></span> Descargar</a>';
+        echo '</div>
+	      </div>
+	     </div>';
+  
+  }
+  
+  
+}
+
+
+/*
+** Funcion para generar password aleatorio
+*/
+
+function genPass(){
+    //Se define una cadena de caractares.
+    //Os recomiendo desordenar las minúsculas, mayúsculas y números para mejorar la probabilidad.
+    $string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890@";
+    //Obtenemos la longitud de la cadena de caracteres
+    $stringLong = strlen($string);
+ 
+    //Definimos la variable que va a contener la contraseña
+    $pass = "";
+    //Se define la longitud de la contraseña, puedes poner la longitud que necesites
+    //Se debe tener en cuenta que cuanto más larga sea más segura será.
+    $longPass=10;
+ 
+    //Creamos la contraseña recorriendo la cadena tantas veces como hayamos indicado
+    for($i=1 ; $i<=$longPass ; $i++){
+        //Definimos numero aleatorio entre 0 y la longitud de la cadena de caracteres-1
+        $pos = rand(0,$stringLong-1);
+ 
+        //Vamos formando la contraseña con cada carácter aleatorio.
+        $pass .= substr($string,$pos,1);
+    }
+    return $pass;
+}
+
+/*
+** Funcion para blanquear password
+*/
+
+function resetPass($conn,$usuario){
+
+  $password = genPass();
+  
+  $sql = "UPDATE usuarios SET password = '$password' where user = '$usuario'";
+  
+  $retval = mysqli_query($conn,$sql);
+ 
+  
+  if($retval){
+    echo '<div class="container">
+      <div class="row">
+      <div class="col-md-12">';
+    
+    echo '<div class="alert alert-success" role="alert">';
+    echo "Su Password fue blanqueada con Exito!";
+    echo "<br>";
+    gentxt($usuario,$password);
+    //echo 'Y es la siguiente: '.$password;
+    echo "</div>";
+    echo '</div>
+	  </div>
+	  </div>';
+    
+  }else{
+    
+    echo '<div class="container">
+      <div class="row">
+      <div class="col-md-12">';
+    echo '<div class="alert alert-danger" role="alert">';
+    echo "Error al Blanquear Password";
+    echo "</div>";
+     echo '</div>
+	  </div>
+	  </div>';
+    
+  }
+  
+   
+ /* // Se envia mail al usuario para notificarlo
+  $to = $email;
+  $subject = "Blanqueo de Password";
+  $message = "Su nueva Password es:  '.$password.' ingrese con su usuario para poder actualizarlo de inmediato"; 
+  
+  $send = mail($to,$subjet,$message);
+  
+  if($send){
+  echo '<div class="container">
+      <div class="row">
+      <div class="col-md-12">';
+    echo '<div class="alert alert-success" role="alert">';
+    echo "Se le ha enviado el nuevo Password a su casilla de Correo Electrónico";
+    echo "</div>";
+    echo '</div>
+	  </div>
+	  </div>';
+  }else{
+    
+     echo '<div class="container">
+      <div class="row">
+      <div class="col-md-12">';
+    echo '<div class="alert alert-danger" role="alert">';
+    echo "Hubo un error al intentar enviar el Correo";
+    echo "</div>";
+    echo '</div>
+	  </div>
+	  </div>';
+  }*/
+ 
+  
 }
 
 

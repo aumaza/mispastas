@@ -31,7 +31,7 @@ CREATE TABLE `clientes` (
   `telefono` varchar(10) NOT NULL,
   `celular` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1C','BANFIELD','1142420569','1161669201');
+INSERT INTO `clientes` VALUES (1,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1C','BANFIELD','1142420569','1161669201'),(2,'Ignacio Maza','igmaza@gmail.com','Erezcano 651','Adrogue','1142921575','1178957412'),(3,'Florentina Maza','fmaza@gmail.com','Pedernera 349','Lomas de Zamora','1142921144','1145697895'),(5,'Nicolas Maza','enimaza@gmail.com','La Chilca 1883','Ciudad Evita','1146205315','1134857896');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,14 +81,16 @@ CREATE TABLE `pedidos` (
   `fecha` date NOT NULL,
   `producto` varchar(90) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio` float(8,2) NOT NULL,
+  `precio` decimal(8,2) NOT NULL,
   `cliente` varchar(40) NOT NULL,
+  `email` varchar(60) NOT NULL,
   `direccion` varchar(60) NOT NULL,
   `localidad` varchar(60) NOT NULL,
   `celular` varchar(10) NOT NULL,
-  `f_entrega` date NOT NULL,
+  `estado` varchar(9) NOT NULL DEFAULT 'stand-by',
+  `update_est` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +99,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (1,'2020-07-10','LASAGNA',3,1350.00,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1A','BANFIELD','1161669201','Aprobado','2020-07-11'),(2,'2020-07-11','RAVIOLES DE RICOTA (CAJA)',2,600.00,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1C','BANFIELD','1161669201','Aprobado','2020-07-11'),(3,'2020-07-11','RAVIOLES DE VERDURA (CAJA)',1,300.00,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1C','BANFIELD','1161669201','Aprobado','2020-07-11'),(4,'2020-07-11','LASAGNA',2,900.00,'Augusto Maza','debianmaza@gmail.com','Felix de Azara 1871 1C','BANFIELD','1161669201','Aprobado','2020-07-11');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,11 +139,11 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `user` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `role` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +152,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Administrador','root','mispastas',1),(2,'Augusto Maza','aumaza','linux1303',1);
+INSERT INTO `usuarios` VALUES (1,'Administrador','root','mispastas',1),(2,'Augusto Maza','debianmaza@gmail.com','linux1303',1),(3,'Ignacio Maza','igmaza@gmail.com','12345678',1),(4,'Florentina Maza','fmaza@gmail.com','floren2010',1),(5,'Nicolas Maza','enimaza@gmail.com','enimaza123',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -162,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-07 14:11:41
+-- Dump completed on 2020-07-12 14:07:05

@@ -15,7 +15,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
-
+<script >
+	function limitText(limitField, limitNum) {
+       if (limitField.value.length > limitNum) {
+          
+           alert("Ha ingresado más caracteres de los requeridos, deben ser: \n" + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+       
+       if(limitField.value.lenght < limitNum){
+	  alert("Ha ingresado menos caracteres de los requeridos, deben ser:  \n"  + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+}
+</script>
   
   <style>
   body {
@@ -441,7 +454,7 @@
     <div class="col-sm-7 slideanim">
       <div class="row">
       <h2 class="text-center">Datos de Cliente</h2><hr>
-      <form action="registro.php" method="POST">
+      <form action="registro/registro.php" method="POST">
         <div class="col-sm-6 form-group">
           <input class="form-control" id="name1" name="nombre1" onKeyDown="envy();" placeholder="Nombre y Apellido" type="text" required>
 	   <script>
@@ -488,16 +501,70 @@
       </div>
       <div class="row">
       <div class="col-sm-6 form-group">
-          <input class="form-control" id="password1" name="password1" placeholder="Password" type="password" required>
+          <input class="form-control" id="password1" name="password1" onKeyDown="limitText(this,10);" placeholder="Password" type="password" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="password2" name="password2" placeholder="Repetir Password" type="password" required>
+          <input class="form-control" id="password2" name="password2" onkeydown="validate(event);" onKeyDown="limitText(this,10);" placeholder="Repetir Password" type="password" required>
+        <script>
+        function validate(e){
+        
+        var KeyID = e.keyCode;
+        
+            if (KeyID == 9){
+        
+         var pass2 = document.getElementById("password2").value;
+        
+        if(pass2 != " "){
+        var pass1 = document.getElementById("password1").value;
+          
+        }else{
+	  alert("Debe repetir la contraseña");
+        }
+        
+        if(pass2 == pass1){
+	  alert("Genial!!...Puede Continuar!");
+         }else{
+	    alert("Las contraseñas no coinciden! Reintente");
+	    document.getElementById("password2").value = "";
+	    document.getElementById("password1").value = "";
+         }
+         }
+       
+       }
+        </script>
+        
         </div>
-      </div>
+       </div>
       <div class="row">
         <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Registrarse</button>
-        </div>
+          <button class="btn btn-default pull-right" onclick="validateOnClick();" type="submit">Registrarse</button>
+          
+          <script>
+          function validateOnClick(){
+        
+              
+         var pass2 = document.getElementById("password2").value;
+        
+        if(pass2 != " "){
+        var pass1 = document.getElementById("password1").value;
+          
+        }else{
+	  alert("Debe repetir la contraseña");
+        }
+        
+        if(pass2 == pass1){
+	  alert("Genial!!...Puede Continuar!");
+         }else{
+	    alert("Las contraseñas no coinciden! Reintente");
+	    document.getElementById("password2").value = "";
+	    document.getElementById("password1").value = "";
+         }
+         
+       
+       }
+        </script>
+          
+          </div>
       </div>
       </form>
     </div>
@@ -515,9 +582,9 @@
       <div class="row">
       <h2 class="text-left">Usuario</h2><hr>
         <div class="row">
-        <form action="reset_pass.php" method="POST">
+        <form action="registro/form_reset_pass.php" method="POST">
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="user" name="usuario" placeholder="Usuario" type="text" required>
+          <input class="form-control" id="user" name="user" placeholder="Usuario" type="text" required>
         </div>
       </div>
       <div class="row">

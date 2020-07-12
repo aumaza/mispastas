@@ -158,10 +158,10 @@
       </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-       <button type="button" class="btn btn-default"><img src="../../icons/actions/chronometer.png"  class="img-reponsive img-rounded"> Pedidos en Espera <span class="badge"><?php echo $total ?></span></button> 
-       <button type="button" class="btn btn-default"><img src="../../icons/actions/rating.png"  class="img-reponsive img-rounded"> Pedidos Nuevos <span class="badge"><?php echo $nuevo ?></span></button>
-       <button type="button" class="btn btn-default"><img src="../../icons/actions/games-endturn.png"  class="img-reponsive img-rounded"> Pedidos Aprobados <span class="badge"><?php echo $count ?></span></button>
-       <button type="button" class="btn btn-default"><img src="../../icons/actions/im-aim.png"  class="img-reponsive img-rounded"> Pedidos Recibidos <span class="badge"><?php echo $entregado ?></span></button>
+       <button type="button" class="btn btn-default navbar-btn"><img src="../../icons/actions/chronometer.png"  class="img-reponsive img-rounded"> Pedidos en Espera <span class="badge"><?php echo $total ?></span></button> 
+       <button type="button" class="btn btn-default navbar-btn"><img src="../../icons/actions/rating.png"  class="img-reponsive img-rounded"> Pedidos Nuevos <span class="badge"><?php echo $nuevo ?></span></button>
+       <button type="button" class="btn btn-default navbar-btn"><img src="../../icons/actions/games-endturn.png"  class="img-reponsive img-rounded"> Pedidos Aprobados <span class="badge"><?php echo $count ?></span></button>
+       <button type="button" class="btn btn-default navbar-btn"><img src="../../icons/actions/im-aim.png"  class="img-reponsive img-rounded"> Pedidos Recibidos <span class="badge"><?php echo $entregado ?></span></button>
         </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="../../logout.php"><img class="img-reponsive img-rounded" src="../../icons/actions/go-previous-view.png" /> Salir</a></li>
