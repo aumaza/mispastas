@@ -280,7 +280,7 @@
     <div class="col-sm-8">
       <h2>NUESTROS VALORES</h2><br>
       <h4><strong>MISION:</strong> Nuestra misión es poder entregar un producto de calidad, desde la preparación del mismo hasta su entrega.</h4>
-      <h4><strong>VISION:</strong> Nuestra visión, es poder llegar a la mesa de cada familiar con un producto creado y entregado con pasión.</h4>
+      <h4><strong>VISION:</strong> Nuestra visión, es poder llegar a la mesa de cada familia con un producto creado y entregado con pasión.</h4>
     </div>
   </div>
 </div>
