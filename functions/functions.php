@@ -360,7 +360,11 @@ if($conn)
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
+			 if($fila['estado'] == 'stand-by'){
 			 echo ' <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-qrcode"></span> QR</button>';
+			 }if($fila['estado'] == 'Aprobado'){
+			 echo '<a href="../pedidos/comprobante.php?id='.$fila['id'].'" class="btn btn-primary btn-sm" target="blank"><span class="glyphicon glyphicon-print"></span> Comprobante</a>';
+			 }
 			 echo "</td>";
 			 $count++;
 		}
@@ -432,7 +436,9 @@ if($conn)
 		}
 
 		echo "</table>";
-		echo "<br><br><hr>";
+		echo "<br>";
+		echo '<a href="../pedidos/listado.php" target="blank"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/im-aim.png"  class="img-reponsive img-rounded"> Listado Entregas</button></a><br><hr>';
+		echo "<hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
 		echo '</div>';
 		}else{
@@ -486,8 +492,8 @@ if($conn)
 		}
 
 		echo "</table>";
-		echo "<br>";
-		echo '<a href="../localidades/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Localidad</button></a><br><hr>';
+		echo "<br>"; 
+		echo '<a href="../localidades/nuevoRegistro.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"> Agregar Localidad</button></a><hr>';
 		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
 		echo '</div>';
 		}else{

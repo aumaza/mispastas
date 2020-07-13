@@ -1,0 +1,17 @@
+
+// total vendido el ultimo mes
+SELECT sum(precio) FROM pedidos
+WHERE estado = 'Aprobado' and update_est >= DATE_FORMAT(CURRENT_DATE - INTERVAL 1 MONTH, '%Y-%m-01')
+AND update_est <= NOW();
+
+//clientes
+select * from clientes;
+
+//usuarios
+select * from usuarios;
+
+//productos
+select * from productos;
+
+//pedidos
+select * from pedidos;
