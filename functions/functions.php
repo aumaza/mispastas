@@ -363,7 +363,7 @@ if($conn)
 			 if($fila['estado'] == 'stand-by'){
 			 echo ' <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-qrcode"></span> QR</button>';
 			 }if($fila['estado'] == 'Aprobado'){
-			 echo '<a href="../pedidos/comprobante.php?id='.$fila['id'].'" class="btn btn-primary btn-sm" target="blank"><span class="glyphicon glyphicon-print"></span> Comprobante</a>';
+			 echo '<a href="../pedidos/comprobante.php?id='.$fila['id'].'" class="btn btn-success btn-sm" target="blank"><span class="glyphicon glyphicon-print"></span> Comprobante</a>';
 			 }
 			 echo "</td>";
 			 $count++;
@@ -390,8 +390,24 @@ if($conn)
 function loadAsk($conn){
 
 
-if($conn)
-{
+if($conn){
+
+	//total vendido ultimo message
+	$ql = "SELECT sum(precio) as total FROM pedidos WHERE estado = 'Aprobado' and update_est >= DATE_FORMAT(CURRENT_DATE - INTERVAL 1 MONTH, '%Y-%m-01') AND update_est <= NOW()";
+	mysqli_select_db('mis_pastas');
+	$resval = mysqli_query($conn,$ql);
+	while($row = mysqli_fetch_array($resval)){
+	      $total = $row['total'];
+	}
+	//total importe en stand-by
+	$q = "select sum(precio) as total from pedidos where estado = 'stand-by'";
+	mysqli_select_db('mis_pastas');
+	$ret = mysqli_query($conn,$q);
+	while($row = mysqli_fetch_array($ret)){
+	      $tot = $row['total'];
+	}
+	
+	//selecciona todos los pedidos
 	$sql = "SELECT * FROM pedidos";
     	mysqli_select_db('mis_pastas');
     	$resultado = mysqli_query($conn,$sql);
@@ -438,6 +454,10 @@ if($conn)
 		echo "</table>";
 		echo "<br>";
 		echo '<a href="../pedidos/listado.php" target="blank"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/im-aim.png"  class="img-reponsive img-rounded"> Listado Entregas</button></a><br><hr>';
+		echo "<hr>";
+		echo '<button type="button" class="btn btn-success">Total Vendido último mes:  $' .$total; echo '</button>';
+		echo "<hr>";
+		echo '<button type="button" class="btn btn-success">Total importe en Stand-By:  $' .$tot; echo '</button>';
 		echo "<hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
 		echo '</div>';
@@ -912,7 +932,6 @@ function resetPass($conn,$usuario){
  
   
 }
-
 
 
 ?>

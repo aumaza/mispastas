@@ -200,7 +200,7 @@
 	    <button type="submit" class="btn btn-default" name="A"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</button><hr>
 	    <button type="submit" class="btn btn-default" name="B"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</button><hr>
 	    <button type="submit" class="btn btn-default" name="C"><span class="pull-center "><img src="../../icons/status/mail-tagged.png"  class="img-reponsive img-rounded"> Productos</button><hr>
-	    <button type="submit" class="btn btn-default" name="D"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Total Vendido</button>
+	    <a href="../estadisticas/estadisticas.php"><button type="button" class="btn btn-default" ><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Estadísticas</button></a>
 	</form>
       </div> 
     </div>
