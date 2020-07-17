@@ -15,3 +15,12 @@ select * from productos;
 
 //pedidos
 select * from pedidos;
+
+//usuario con más pedidos
+select cliente, count(cliente) as cantidad from pedidos where estado = 'Aprobado' group by cliente limit 0, 1;
+
+//producto mas pedidos
+select producto, count(producto) as cantidad from pedidos where estado = 'Aprobado' group by producto limit 0, 1;
+
+
+
