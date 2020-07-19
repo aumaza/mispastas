@@ -24,7 +24,7 @@
 	<meta charset="utf-8">
 	<title>Usuarios - Editar Password</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
+	<link rel="icon" type="image/png" href="../../img/mispastas32x32.png" />
 	<?php skeleton();?>
 
 	

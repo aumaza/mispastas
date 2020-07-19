@@ -7,7 +7,7 @@
   <title>Manduca - Tienda de Pastas</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="icons/emblems/emblem-new.png" />
+  <link rel="icon" type="image/png" href="img/mispastas32x32.png" />
   <?php skeleton(); ?>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -211,6 +211,13 @@
   input { 
     text-align: center; 
   }
+  .avatar {
+  vertical-align: middle;
+  horizontal-align: right;
+  width: 100px;
+  height: 100px;
+  border-radius: 60%;
+}
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -223,7 +230,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Manduca / Tienda de Pastas</a>
+      <a class="navbar-brand" href="#myPage"><img src='img/mispastas.png' alt='Avatar' class='avatar' ></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -335,7 +342,7 @@
     <div class="col-sm-4">
       <div class="thumbnail">
         <img src="pics/img-01.png" alt="Paris" width="400" height="300">
-        <p><strong>Sorrentinos</strong></p>
+        <p><strong>Panzotis</strong></p>
         </div>
     </div>
     <div class="col-sm-4">
@@ -396,7 +403,7 @@
     <div class="col-sm-4 col-xs-12">
       <div class="panel paneL text-center">
         <div class="panel-heading">
-          <h1>Sorrentinos</h1>
+          <h1>Ravioles Espinaca/Ricota/Jamón</h1>
         </div>
         <div class="panel-body">
           <p><strong>Realizados con:</strong></p>
@@ -404,7 +411,7 @@
           <p><strong>Ingredientes de primera Calidad</strong></p>
         </div>
         <div class="panel-footer">
-          <h3>$350</h3>
+          <h3>$300</h3>
           <h4>Caja (15 Unidades)</h4>
           </div>
       </div>      
@@ -420,7 +427,7 @@
           <p><strong>Ingredientes de primera Calidad</strong></p>
         </div>
         <div class="panel-footer">
-          <h3>$200</h3>
+          <h3>$300</h3>
           <h4>Caja (24 Unidades)</h4>
           </div>
       </div>      

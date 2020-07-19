@@ -23,7 +23,7 @@
   <title>Pedido Exitoso</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
+  <link rel="icon" type="image/png" href="../../img/mispastas32x32.png" />
 	<?php skeleton();?>
 	<!-- Data Table Script -->
 <script>

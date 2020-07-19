@@ -66,7 +66,7 @@
   <title>Panel del Usuario</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="icon" type="image/png" href="../../icons/emblems/emblem-new.png" />
+   <link rel="icon" type="image/png" href="../../img/mispastas32x32.png" />
   <?php skeleton();?>
   
   <!-- Data Table Script -->
@@ -248,7 +248,7 @@
 </div>
 
 <footer class="container-fluid text-center">
-  <p><img class="img-reponsive img-rounded" src="../../icons/emblems/emblem-new.png" /> Manduca - Tienda de Pastas</p>
+  <p><img src='../../img/mispastas.png' alt='Avatar' class='avatar' > Manduca - Tienda de Pastas</p>
 </footer>
 
 

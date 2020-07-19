@@ -32,7 +32,7 @@
 	<meta charset="utf-8">
 	<title>Productos - Registro Actualizado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="../../icons/actions/list-add.png" />
+	<link rel="icon" type="image/png" href="../../img/mispastas32x32.png" />
 	<?php skeleton();?>
 	
 	
